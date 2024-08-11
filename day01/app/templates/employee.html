@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Management</title>
+    
+ 
+    <style>
+        /* Body and Basic Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #1c1c1c; /* Dark background */
+    color: #f0f0f0; /* Light text */
+    margin: 0;
+    padding: 20px;
+}
+
+.main-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #2a2a2a; /* Slightly lighter dark background */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Title */
+h1 {
+    font-size: 2.5em;
+    color: #ff6f61; /* Coral */
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* Form Styling */
+form {
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: #333; /* Dark grey background */
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+label {
+    font-size: 1.2em;
+    color: #87cefa; /* Light sky blue */
+}
+
+input[type="text"], input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #444; /* Slightly lighter grey */
+    color: #f0f0f0;
+    border: 2px solid #87cefa; /* Light sky blue */
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+button[type="button"] {
+    padding: 10px 20px;
+    margin: 10px 0;
+    background-color: #32cd32; /* Lime green */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button[type="button"]:hover {
+    background-color: #228b22; /* Forest green */
+}
+
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+    background-color: #2a2a2a; /* Dark grey */
+    color: #f0f0f0;
+}
+
+table, th, td {
+    border: 1px solid #444; /* Medium grey */
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+}
+
+thead {
+    background-color: #444; /* Slightly lighter grey */
+    color: #87cefa; /* Light sky blue */
+}
+
+tbody tr:hover {
+    background-color: #1e1e1e; /* Dark background */
+}
+
+/* Pagination Styling */
+div.pagination {
+    text-align: center;
+    margin-top: 20px;
+}
+
+div.pagination button {
+    padding: 10px 15px;
+    background-color: #87cefa; /* Light sky blue */
+    color: #333;
+    border: none;
+    border-radius: 5px;
+    margin: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+div.pagination button:hover {
+    background-color: #4682b4; /* Steel blue */
+}
+
+div.pagination label {
+    font-size: 1.2em;
+    margin: 0 10px;
+    color: #f0f0f0;
+}
+
+       
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        <h1>Employee Management</h1>
+        <form method="POST">
+            {% csrf_token %}
+            {{form}}
+            <input type="submit" value="Save">
+        </form>
+
+        <form>
+            <label for="name-contains">Name Contains</label>
+            <input>
+            <button type="button">Search</button>
+        </form>
+
+        <table>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Action</th>
+                
+            </tr>
+            {% for employee in employs %}
+            <tr>
+                <td>{{employee.id}}</td>
+                <td>{{employee.name}}</td>
+                
+                <td><button type="button">View</button></td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <div class="pagination">
+            <button type="button">Previous</button>
+            <label>1</label>
+            <button type="button">Next</button>
+        </div>
+    </div>
+
+</body>
+</html>
